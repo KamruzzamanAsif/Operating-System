@@ -16,6 +16,31 @@ void error(const char *msg){
     exit(1);
 }
 
+void client_handeler(int new_sockfd, char buffer[]){
+     if (write(new_sockfd, "Start messaging \t<<write bye to quit>>\n", 
+        strlen("Start messaging \t<<write bye to quit>>\n")) < 0)
+            error("ERROR writing to socket");
+    while(1){
+        bzero(buffer,MAXDATASIZE);
+        if (read(new_sockfd,buffer,MAXDATASIZE-1) < 0) 
+            error("ERROR reading from socket");
+        printf("Client: %s",buffer);
+
+        if (strncmp("bye", buffer, 3) == 0)
+            break;
+        
+        bzero(buffer,MAXDATASIZE);
+        fgets(buffer,MAXDATASIZE-1,stdin);
+        if (write(new_sockfd, buffer, strlen(buffer)) < 0)
+            error("ERROR writing to socket");
+        
+        if (strncmp("bye", buffer, 3) == 0)
+            break;
+    }
+
+    return;
+}
+
 int main(void){
     int sockfd, new_sockfd;        // listen on sockfd, new connection on new_sockfd
     struct sockaddr_in server_addr;    // server's address information
@@ -51,30 +76,17 @@ int main(void){
         if((child_pid = fork()) == 0){
             close(sockfd);
 
-            if (write(new_sockfd, "Start messaging \t<<write bye to quit>>\n", 
-            strlen("Start messaging \t<<write bye to quit>>\n")) < 0)
-                error("ERROR writing to socket");
-            while(1){
-                bzero(buffer,MAXDATASIZE);
-                if (read(new_sockfd,buffer,MAXDATASIZE-1) < 0) 
-                    error("ERROR reading from socket");
-                printf("Client: %s",buffer);
+            client_handeler(new_sockfd, buffer);
 
-                if (strncmp("bye", buffer, 3) == 0)
-                    break;
-                
-                bzero(buffer,MAXDATASIZE);
-                fgets(buffer,MAXDATASIZE-1,stdin);
-                if (write(new_sockfd, buffer, strlen(buffer)) < 0)
-                    error("ERROR writing to socket");
-                
-                if (strncmp("bye", buffer, 3) == 0)
-                    break;
-            }
+            close(new_sockfd);
+            exit(EXIT_SUCCESS);
+        }
+        else{
+            close(new_sockfd);
         }
     }
    
     close(new_sockfd);  
-    //close(sockfd);      
+
     return 0;
 }
