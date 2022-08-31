@@ -9,17 +9,18 @@
 // number of threads
 #define MAX_THREAD 9
 
-int matA[MAX][MAX];
-int matB[MAX][MAX];
-int matC[MAX][MAX];
+int matA[COL][COL];
+int matB[COL][COL];
+int matC[COL][COL];
+//int i =0;
 
 void* multi(void* arg)
 {
     int i = *(int*) arg; // i is the step/row num
     // printf("i value is :%d \n", i);
-
-	for (int j = 0; j < MAX; j++)
-	    for (int k = 0; k < MAX; k++)
+	
+	for (int j = 0; j < COL; j++)
+	    for (int k = 0; k < COL; k++)
 		    matC[i][j] += matA[i][k] * matB[k][j];
 }
 
@@ -27,25 +28,25 @@ void* multi(void* arg)
 int main()
 {
 	// Generating random values in matA and matB
-	for (int i = 0; i < MAX; i++) {
-		for (int j = 0; j < MAX; j++) {
-			matA[i][j] = rand() % 10;
-			matB[i][j] = rand() % 10;
+	for (int i = 0; i < COL; i++) {
+		for (int j = 0; j < COL; j++) {
+			matA[i][j] = 1;//rand() % 10;
+			matB[i][j] = 1;//rand() % 10;
 		}
 	}
 
 	// Displaying matA
 	printf("\nMatrix A:\n");
-	for (int i = 0; i < MAX; i++) {
-		for (int j = 0; j < MAX; j++)
+	for (int i = 0; i < COL; i++) {
+		for (int j = 0; j < COL; j++)
 			printf("%d ", matA[i][j]);
 		printf("\n");
 	}
 
 	// Displaying matB
     printf("\nMatrix B:\n");
-	for (int i = 0; i < MAX; i++) {
-		for (int j = 0; j < MAX; j++)
+	for (int i = 0; i < COL; i++) {
+		for (int j = 0; j < COL; j++)
 			printf("%d ", matB[i][j]);
 		printf("\n");
 	}
@@ -54,19 +55,13 @@ int main()
 	pthread_t threads[MAX_THREAD];
 
 	// create threads
-    int* p; // for row/step number of the resultant martrix
-    int a = 0;
-    p = &a;
+    
 	for (int i = 0; i < MAX_THREAD; i++) {
-		pthread_create(&threads[i], NULL, multi, (void*)(p));
-        // pthread_join(threads[i], NULL); // calculate the thread[i]'s work first then we go for next thread
-        
-        /* if we join here the ans will be correct but thread won't run concurrently 
-           our goal is to run thread concurrently rather than actual result */
-        
-        sleep(1); // to avoid wrong result. to gain synchronization
+		int* tid; // for row/step number of the resultant martrix
+		tid = (int *) malloc( sizeof(int) );
+   		*tid = i;
 
-        (*p)++;  // increase row/step number
+		pthread_create(&threads[i], NULL, multi, (void*)(tid));
 	}
 
     // join
@@ -75,8 +70,8 @@ int main()
 
 	// result matrix
 	printf("Multiplication of A and B:\n");
-	for (int i = 0; i < MAX; i++) {
-		for (int j = 0; j < MAX; j++)
+	for (int i = 0; i < COL; i++) {
+		for (int j = 0; j < COL; j++)
 			printf("%d ", matC[i][j]);
 		printf("\n");
 	}
