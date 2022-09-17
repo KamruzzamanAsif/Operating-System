@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>  
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -26,9 +27,103 @@ struct client_info{
 };
 struct client_info Client[MAXCLIENT];
 
+// message thead
+pthread_t mthread;
 
 
+////////////////////////// Queue Part /////////////////////////////////
+#define MESSAGE_SIZE 64
+#define QUEUE_SIZE 3
 
+typedef struct {
+char data[MESSAGE_SIZE];
+} MESSAGE;
+
+typedef struct {
+    MESSAGE messages[QUEUE_SIZE];
+    int begin;
+    int end;
+    int current_load;
+} QUEUE;
+
+QUEUE queue;
+
+void init_queue(QUEUE *queue) {
+    queue->begin = 0;
+    queue->end = 0;
+    queue->current_load = 0;
+    memset(&queue->messages[0], 0, QUEUE_SIZE * sizeof(MESSAGE_SIZE));
+}
+
+bool enque(QUEUE *queue, MESSAGE *message) {
+    if (queue->current_load < QUEUE_SIZE) {
+        if (queue->end == QUEUE_SIZE) {
+            queue->end = 0;
+        }
+        queue->messages[queue->end] = *message;
+        queue->end++;
+        queue->current_load++;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+bool deque(QUEUE *queue, MESSAGE *message) {
+    if (queue->current_load > 0) {
+        *message = queue->messages[queue->begin];
+        memset(&queue->messages[queue->begin], 0, sizeof(MESSAGE));
+        queue->begin = (queue->begin + 1) % QUEUE_SIZE;
+        queue->current_load--;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+////////////////////////////// queue part ends ///////////////////////////////
+
+
+void *messageHandler(void * arg){
+    MESSAGE temp_buffer;
+
+    while(1){
+        bzero(temp_buffer.data, sizeof(MESSAGE));
+        if(deque(&queue, &temp_buffer)){
+            if(temp_buffer.data[0] =='@'){
+                // name add kora baki...and nam er sathe sockId map koar baki 
+                // then intended user er kace message dewa jabe
+                char name[20];
+                int i = 0;
+                while(temp_buffer.data[i] != '/'){
+                    name[i++] = temp_buffer.data[i];
+                }
+            }
+            else{
+                // broadcast the message to the clients 
+                char id[20], actual_message[1024];
+                int i = 0;
+                while(temp_buffer.data[i] != '/'){
+                    id[i] = temp_buffer.data[i];
+                    i++;
+                }
+    
+                int j = 0;
+                i++;
+                while(i<strlen(temp_buffer.data)){
+                    actual_message[j++] = temp_buffer.data[i++];
+                }
+
+                for(int i = 0; i < clientCount; i++){
+                    if(Client[i].sockID != atoi(id)){
+                        if (write(Client[i].sockID, actual_message, strlen(actual_message)) < 0)
+                        perror("ERROR writing to socket");
+                    }
+                }
+            }
+        }
+    }
+}
 
 
 
@@ -39,29 +134,35 @@ void * clientHandler(void * client_details){
 
 	printf("Client %d connected.\n", number+1);
 
-    // mutex lock for synchronization
-    pthread_mutex_lock(&mutex);
 
-    bzero(server_buffer, MAX_SERVER_BUFFER_SIZE);
-    int len = read(clientSocket, server_buffer, MAX_SERVER_BUFFER_SIZE-1);
-    if (len < 0) 
-        perror("ERROR reading from socket");
-    server_buffer[len] = '\0';
-    
-    for(int i = 0; i < clientCount; i++){
-        if (write(Client[i].sockID, server_buffer, strlen(server_buffer)) < 0)
-            perror("ERROR writing to socket");
+    MESSAGE temp_buffer;
+    while(1){
+        bzero(temp_buffer.data, sizeof(temp_buffer.data));
+        int len = read(clientSocket, temp_buffer.data, sizeof(temp_buffer.data)-1);
+        if (len < 0) 
+            perror("ERROR reading from socket");
+        temp_buffer.data[len] = '\0';
+
+        // add client socket id to the message
+        char clientSocID[sizeof(int) * 4 + 1];
+        sprintf(clientSocID, "%d", clientSocket);
+        char *t = strdup(temp_buffer.data);
+        strcpy(temp_buffer.data, clientSocID);
+        strcat(temp_buffer.data, "/"); 
+        strcat(temp_buffer.data, t);
+        free(t);
+
+        // enque the message  
+        pthread_mutex_lock(&mutex);
+        enque(&queue, &temp_buffer);
+        pthread_mutex_unlock(&mutex);
     }
-
-    pthread_mutex_unlock(&mutex);
-    
 }
 
 
 
-
-
 int main(void){
+    init_queue(&queue);  
     // server socket
     int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -82,6 +183,9 @@ int main(void){
     }
         
     printf("Server started listening on Port %d ......\n", PORT);
+
+    // add message handler thread //
+    pthread_create(&mthread, NULL, messageHandler, NULL);
 
     int sin_size = sizeof(struct sockaddr_in); // length of client socket address
     while(1){
