@@ -11,61 +11,66 @@
 #include <sys/types.h>
 #include <arpa/inet.h>
 
+#define PORT 5050       // the server port where client will connect 
+#define MAXDATASIZE 256 // max number of bytes we can get at once
+
+
 void * doRecieving(void * sockID){
 
 	int clientSocket = *((int *) sockID);
+	char outputBuffer[MAXDATASIZE];
 
 	while(1){
+		bzero(outputBuffer, MAXDATASIZE);
 
-		char data[1024];
-		int read = recv(clientSocket,data,1024,0);
-		data[read] = '\0';
-		printf("%s\n",data);
+		int numberOfBytes;
+		if ((numberOfBytes = read(clientSocket, outputBuffer, MAXDATASIZE-1)) < 0) {
+            perror("ERROR reading from socket");  
+			exit(0);  
+		}
 
+        outputBuffer[numberOfBytes] = '\0';
+        printf("Server: %s",outputBuffer);
 	}
 
 }
 
 int main(){
+	// client socket
+	int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
-	int clientSocket = socket(PF_INET, SOCK_STREAM, 0);
-
+	// server socket address information
 	struct sockaddr_in serverAddr;
 
 	serverAddr.sin_family = AF_INET;
-	serverAddr.sin_port = htons(8080);
+	serverAddr.sin_port = htons(PORT); // short network byte order	
 	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
-	if(connect(clientSocket, (struct sockaddr*) &serverAddr, sizeof(serverAddr)) == -1) return 0;
+	// connect to server
+	if(connect(clientSocket, (struct sockaddr*) &serverAddr, sizeof(serverAddr)) < 0){
+		printf("Failed to connect"); 
+		exit(0);  
+	} 
 
 	printf("Connection established ............\n");
 
+	// the thread will be running to receive messages from server
 	pthread_t thread;
 	pthread_create(&thread, NULL, doRecieving, (void *) &clientSocket );
 
+	// and we are in our main thread to send messages to server 
+	char inputBuffer[MAXDATASIZE];
 	while(1){
+		bzero(inputBuffer, MAXDATASIZE);
+        fgets(inputBuffer, MAXDATASIZE-1, stdin);
 
-		char input[1024];
-		scanf("%s",input);
-
-		if(strcmp(input,"LIST") == 0){
-
-			send(clientSocket,input,1024,0);
-
-		}
-		if(strcmp(input,"SEND") == 0){
-
-			send(clientSocket,input,1024,0);
-			
-			scanf("%s",input);
-			send(clientSocket,input,1024,0);
-			
-			scanf("%[^\n]s",input);
-			send(clientSocket,input,1024,0);
-
+		if (write(clientSocket, inputBuffer, strlen(inputBuffer)) < 0) {
+            perror("ERROR writing to socket"); 
+			exit(0); 
 		}
 
 	}
 
     return 0;
 }
+
