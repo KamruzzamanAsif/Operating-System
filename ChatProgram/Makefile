@@ -9,8 +9,8 @@ all: $(BINFILES)
 client: Client.c
 	gcc -o Client Client.c
 
-server: server.c
-	gcc -o Server Server.c
+server: Server.c
+	gcc -o Server Server.c -lpthread
 
 
 clean:

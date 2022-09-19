@@ -10,9 +10,11 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 
 #define PORT 5050       // the server port where client will connect 
 #define MAXDATASIZE 256 // max number of bytes we can get at once
+struct hostent *server;
 
 
 void * doRecieving(void * sockID){
@@ -35,7 +37,14 @@ void * doRecieving(void * sockID){
 
 }
 
-int main(){
+int main(int argc, char *argv[]){
+
+	if (argc != 3) {
+        printf("usage: client client_name hostname\n"); exit(1);  }
+	
+	if ((server = gethostbyname(argv[2])) == NULL) {  // get the host info 
+	printf("ERROR, no such host\n");  exit(0);  }
+
 	// client socket
 	int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
 
@@ -57,6 +66,12 @@ int main(){
 	// the thread will be running to receive messages from server
 	pthread_t thread;
 	pthread_create(&thread, NULL, doRecieving, (void *) &clientSocket );
+
+	// send the client name to server
+	if (write(clientSocket, argv[1], strlen(argv[1])) < 0) {
+            perror("ERROR writing to socket"); 
+			exit(0); 
+		}
 
 	// and we are in our main thread to send messages to server 
 	char inputBuffer[MAXDATASIZE];

@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>  
+//#include <stdbool.h>  
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -55,7 +55,7 @@ void init_queue(QUEUE *queue) {
     memset(&queue->messages[0], 0, QUEUE_SIZE * sizeof(MESSAGE_SIZE));
 }
 
-bool enque(QUEUE *queue, MESSAGE *message) {
+int enque(QUEUE *queue, MESSAGE *message) {
     if (queue->current_load < QUEUE_SIZE) {
         if (queue->end == QUEUE_SIZE) {
             queue->end = 0;
@@ -63,21 +63,21 @@ bool enque(QUEUE *queue, MESSAGE *message) {
         queue->messages[queue->end] = *message;
         queue->end++;
         queue->current_load++;
-        return true;
+        return 1;
     } else {
-        return false;
+        return 0;
     }
 }
 
-bool deque(QUEUE *queue, MESSAGE *message) {
+int deque(QUEUE *queue, MESSAGE *message) {
     if (queue->current_load > 0) {
         *message = queue->messages[queue->begin];
         memset(&queue->messages[queue->begin], 0, sizeof(MESSAGE));
         queue->begin = (queue->begin + 1) % QUEUE_SIZE;
         queue->current_load--;
-        return true;
+        return 1;
     } else {
-        return false;
+        return 0;
     }
 }
 
@@ -98,6 +98,7 @@ void *messageHandler(void * arg){
                 while(temp_buffer.data[i] != '/'){
                     name[i++] = temp_buffer.data[i];
                 }
+                printf("%s is connected...\n", name);
             }
             else{
                 // broadcast the message to the clients 
@@ -131,11 +132,17 @@ void * clientHandler(void * client_details){
     struct client_info* clientDetail = (struct client_info*) client_details;
 	int number = clientDetail -> number;
 	int clientSocket = clientDetail -> sockID;
-
-	printf("Client %d connected.\n", number+1);
-
-
     MESSAGE temp_buffer;
+
+    // get client name
+    bzero(temp_buffer.data, sizeof(temp_buffer.data));
+    int len = read(clientSocket, temp_buffer.data, sizeof(temp_buffer.data)-1);
+    if (len < 0) 
+        perror("ERROR reading from socket");
+    temp_buffer.data[len] = '\0';
+
+	printf("Client %s connected.\n", temp_buffer.data);
+
     while(1){
         bzero(temp_buffer.data, sizeof(temp_buffer.data));
         int len = read(clientSocket, temp_buffer.data, sizeof(temp_buffer.data)-1);
