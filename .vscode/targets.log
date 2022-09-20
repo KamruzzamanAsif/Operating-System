@@ -1,263 +1,269 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-# GNU Make 4.2.1
+make: *** No rule to make target 'all'.  Stop.
+
+# GNU Make 4.3
 # Built for x86_64-pc-linux-gnu
-# Copyright (C) 1988-2016 Free Software Foundation, Inc.
+# Copyright (C) 1988-2020 Free Software Foundation, Inc.
 # License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Sep 19 15:35:39 2022
+# Make data base, printed on Tue Sep 20 21:29:03 2022
 
 # Variables
 
-# 'override' directive
-GNUMAKEFLAGS := 
-# automatic
-<D = $(patsubst %/,%,$(dir $<))
-# automatic
-?F = $(notdir $?)
-# environment
-DESKTOP_SESSION = ubuntu
-# default
-.SHELLFLAGS := -c
-# environment
-XDG_SESSION_CLASS = user
-# environment
-SNAP_COMMON = /var/snap/code/common
-# environment
-XDG_SESSION_TYPE = x11
-# automatic
-?D = $(patsubst %/,%,$(dir $?))
-# environment
-IM_CONFIG_PHASE = 1
-# automatic
-@D = $(patsubst %/,%,$(dir $@))
-# environment
-XAUTHORITY = /run/user/1001/gdm/Xauthority
-# environment
-GDMSESSION = ubuntu
-# environment
-XMODIFIERS = @im=ibus
-# makefile
-CURDIR := /home/asif_1217/Operating-System-main
-# makefile
-SHELL = /bin/sh
-# environment
-SNAP_DATA = /var/snap/code/108
-# environment
-VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
-# environment
-JOURNAL_STREAM = 8:42996
-# environment
-XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
-# environment
-SNAP_INSTANCE_NAME = code
-# environment
-SNAP_ARCH = amd64
-# makefile
-MAKEFILE_LIST := 
-# automatic
-@F = $(notdir $@)
-# environment
-GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
-# environment
-USERNAME = asif_1217
-# environment
-MAKELEVEL := 0
-# environment
-XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
-# environment
-DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1001/bus
-# environment
-_ = /snap/code/108/usr/share/code/code
-# environment
-MANAGERPID = 1332
-# environment
-LESSOPEN = | /usr/bin/lesspipe %s
-# environment
-LC_NAME = bn_BD
-# environment
-VSCODE_CWD = /home/asif_1217
-# environment
-GSETTINGS_SCHEMA_DIR = /snap/code/108/usr/share/glib-2.0/schemas
-# default
-MAKE_HOST := x86_64-pc-linux-gnu
-# environment
-PATH = /home/asif_1217/bin:/home/asif_1217/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
-# environment
-GPG_AGENT_INFO = /run/user/1001/gnupg/S.gpg-agent:0:1
-# environment
-SESSION_MANAGER = local/iit-desktop:@/tmp/.ICE-unix/1543,unix/iit-desktop:/tmp/.ICE-unix/1543
-# environment
-XDG_RUNTIME_DIR = /run/user/1001
-# environment
-GDK_PIXBUF_MODULE_FILE = /home/asif_1217/snap/code/common/.cache/gdk-pixbuf-loaders.cache
-# environment
-SNAP = /snap/code/108
-# environment
-SNAP_VERSION = 74b1f979
-# environment
-XDG_MENU_PREFIX = gnome-
-# environment
-ELECTRON_RUN_AS_NODE = 1
-# environment
-INVOCATION_ID = b5f616249c1949e3bcf0bda90f2ef957
-# environment
-GDK_PIXBUF_MODULEDIR = /snap/code/108/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
-# default
-.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
-# environment
-LS_COLORS = 
-# environment
-XDG_SESSION_DESKTOP = ubuntu
-# environment
-SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
-# environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 20148
-# automatic
-%F = $(notdir $%)
-# environment
-DISPLAY = :0
-# environment
-SNAP_INSTANCE_KEY = 
-# environment
-PWD = /home/asif_1217/Operating-System-main
-# default
-.LOADED := 
-# environment
-SSH_AGENT_PID = 1505
-# environment
-ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
-# environment
-GTK_MODULES = gail:atk-bridge
-# environment
-VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
-# environment
-HOME = /home/asif_1217
-# environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
-# environment
-VSCODE_CLI = 1
-# environment
-VSCODE_CODE_CACHE_PATH = /home/asif_1217/.config/Code/CachedData/74b1f979648cc44d385a2286793c226e611f59e7
-# environment
-LOGNAME = asif_1217
-# environment
-APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
-# environment
-SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
-# environment
-SNAP_CONTEXT = 1ekNFJtK_lMENGT_VaGB86kLLWUJ0MG1keB8UnWTwKLHlvlzK33a
-# automatic
-+F = $(notdir $+)
-# environment
-ELECTRON_NO_ATTACH_CONSOLE = 1
-# environment
-SNAP_USER_COMMON = /home/asif_1217/snap/code/common
-# environment
-VSCODE_HANDLES_UNCAUGHT_ERRORS = true
-# environment
-GNOME_DESKTOP_SESSION_ID = this-is-deprecated
-# automatic
-^D = $(patsubst %/,%,$(dir $^))
-# environment
-LC_TIME = bn_BD
-# environment
-SNAP_REAL_HOME = /home/asif_1217
-# default
-MAKE = $(MAKE_COMMAND)
-# default
-MAKECMDGOALS := all
-# environment
-QT_IM_MODULE = ibus
-# environment
-SNAP_USER_DATA = /home/asif_1217/snap/code/108
-# environment
-SHLVL = 0
-# environment
-GNOME_SHELL_SESSION_MODE = ubuntu
-# default
-MAKE_VERSION := 4.2.1
-# environment
-USER = asif_1217
-# environment
-SNAP_REVISION = 108
-# environment
-LC_MONETARY = bn_BD
-# makefile
-.DEFAULT_GOAL := 
-# environment
-XDG_CURRENT_DESKTOP = Unity
-# automatic
-%D = $(patsubst %/,%,$(dir $%))
-# environment
-LC_TELEPHONE = bn_BD
-# default
-MAKE_COMMAND := make
-# default
-.VARIABLES := 
-# automatic
-*F = $(notdir $*)
-# environment
-VSCODE_IPC_HOOK = /run/user/1001/vscode-a756b619-1.71.2-main.sock
-# environment
-BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
-# makefile
-MAKEFLAGS = pqrR
-# environment
-MFLAGS = -pqrR
-# automatic
-*D = $(patsubst %/,%,$(dir $*))
-# automatic
-+D = $(patsubst %/,%,$(dir $+))
 # environment
 GDK_BACKEND = x11
 # environment
-LC_PAPER = bn_BD
-# environment
-LC_IDENTIFICATION = bn_BD
-# environment
-QT_ACCESSIBILITY = 1
-# default
-MAKEFILES := 
-# environment
-SNAP_COOKIE = 1ekNFJtK_lMENGT_VaGB86kLLWUJ0MG1keB8UnWTwKLHlvlzK33a
-# environment
-LC_NUMERIC = bn_BD
-# automatic
-<F = $(notdir $<)
-# environment
-LC_MEASUREMENT = bn_BD
-# environment
-SNAP_NAME = code
-# environment
 LC_ALL = C
 # environment
-GJS_DEBUG_TOPICS = JS ERROR;JS LOG
-# automatic
-^F = $(notdir $^)
-# default
-SUFFIXES := 
+GNOME_SHELL_SESSION_MODE = ubuntu
 # environment
-SNAP_REEXEC = 
+SSH_AGENT_LAUNCHER = gnome-keyring
 # environment
-CHROME_DESKTOP = code-url-handler.desktop
-# environment
-WINDOWPATH = 2
-# default
-.INCLUDE_DIRS = /usr/include /usr/local/include /usr/include
+SNAP_INSTANCE_KEY = 
 # environment
 GJS_DEBUG_OUTPUT = stderr
-# default
-.RECIPEPREFIX := 
+# environment
+LC_NAME = bn_BD
+# environment
+LC_NUMERIC = bn_BD
+# environment
+VSCODE_CWD = /home/asif
 # environment
 LC_ADDRESS = bn_BD
+# default
+MAKE_COMMAND := make
+# environment
+QT_ACCESSIBILITY = 1
+# automatic
+@D = $(patsubst %/,%,$(dir $@))
+# environment
+SNAP_INSTANCE_NAME = code
+# environment
+GDK_PIXBUF_MODULEDIR = /snap/code/108/usr/lib/x86_64-linux-gnu/gdk-pixbuf-2.0/2.10.0/loaders
+# environment
+VSCODE_HANDLES_UNCAUGHT_ERRORS = true
+# default
+.VARIABLES := 
+# environment
+PWD = /home/asif/Operating-System
+# automatic
+%D = $(patsubst %/,%,$(dir $%))
+# environment
+XDG_DATA_DIRS = /usr/share/ubuntu:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop
+# automatic
+^D = $(patsubst %/,%,$(dir $^))
+# automatic
+%F = $(notdir $%)
+# environment
+VSCODE_CODE_CACHE_PATH = /home/asif/.config/Code/CachedData/74b1f979648cc44d385a2286793c226e611f59e7
 # environment
 LANG = C
 # environment
-VSCODE_PID = 20195
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.XYQTS1
+# default
+.LOADED := 
+# default
+.INCLUDE_DIRS = /usr/local/include /usr/include /usr/include
+# makefile
+MAKEFLAGS = pqrR
+# makefile
+CURDIR := /home/asif/Operating-System
+# environment
+APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
+# environment
+LESSOPEN = | /usr/bin/lesspipe %s
+# automatic
+*D = $(patsubst %/,%,$(dir $*))
+# environment
+MFLAGS = -pqrR
+# environment
+SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
+# default
+.SHELLFLAGS := -c
+# environment
+WAYLAND_DISPLAY = wayland-0
+# environment
+XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
+# automatic
++D = $(patsubst %/,%,$(dir $+))
+# environment
+XDG_SESSION_DESKTOP = ubuntu
+# makefile
+MAKEFILE_LIST := 
+# environment
+SNAP_REEXEC = 
+# automatic
+@F = $(notdir $@)
+# environment
+VSCODE_PID = 16128
+# environment
+XDG_SESSION_TYPE = wayland
+# automatic
+?D = $(patsubst %/,%,$(dir $?))
+# environment
+BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+SESSION_MANAGER = local/asif-H81M-DS2:@/tmp/.ICE-unix/2933,unix/asif-H81M-DS2:/tmp/.ICE-unix/2933
+# automatic
+*F = $(notdir $*)
+# environment
+CHROME_DESKTOP = code-url-handler.desktop
+# environment
+DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
+# automatic
+<D = $(patsubst %/,%,$(dir $<))
+# environment
+VSCODE_NLS_CONFIG = {"locale":"en-us","availableLanguages":{},"_languagePackSupport":true}
+# default
+MAKE_HOST := x86_64-pc-linux-gnu
+# environment
+GNOME_DESKTOP_SESSION_ID = this-is-deprecated
+# makefile
+SHELL = /bin/sh
+# default
+MAKECMDGOALS := all
+# environment
+XMODIFIERS = @im=ibus
+# environment
+GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SHLVL = 0
+# environment
+MAKELEVEL := 0
+# environment
+IM_CONFIG_CHECK_ENV = 1
+# default
+MAKE = $(MAKE_COMMAND)
+# environment
+SNAP_COOKIE = _hsbZcMjtpjl_WNoSxZzhK4OaViY7YCyxvyppusaHCljq-Rsz1Tt
+# environment
+PATH = /home/asif/.local/bin:/home/asif/bin:/home/asif/.local/bin:/home/asif/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+# default
+MAKEFILES := 
+# environment
+LC_MONETARY = bn_BD
+# automatic
+^F = $(notdir $^)
+# environment
+SNAP_USER_COMMON = /home/asif/snap/code/common
+# environment
+LC_TIME = bn_BD
+# environment
+SNAP = /snap/code/108
+# environment
+INVOCATION_ID = 14941149487644a48ec2831a40414f98
+# environment
+SNAP_REVISION = 108
+# environment
+SNAP_REAL_HOME = /home/asif
+# environment
+USERNAME = asif
+# environment
+GNOME_SETUP_DISPLAY = :1
+# environment
+LC_TELEPHONE = bn_BD
+# environment
+LESSCLOSE = /usr/bin/lesspipe %s %s
+# automatic
+?F = $(notdir $?)
+# environment
+XDG_CURRENT_DESKTOP = Unity
+# environment
+LS_COLORS = 
+# automatic
++F = $(notdir $+)
+# environment
+DESKTOP_SESSION = ubuntu
+# environment
+ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
+# 'override' directive
+GNUMAKEFLAGS := 
+# environment
+LOGNAME = asif
+# environment
+GIO_LAUNCHED_DESKTOP_FILE = /var/lib/snapd/desktop/applications/code_code.desktop
+# environment
+SNAP_ARCH = amd64
+# makefile
+.DEFAULT_GOAL := 
+# environment
+SYSTEMD_EXEC_PID = 2958
+# environment
+DISPLAY = :0
+# environment
+USER = asif
+# environment
+GTK_MODULES = gail:atk-bridge
+# default
+MAKE_VERSION := 4.3
+# environment
+SNAP_DATA = /var/snap/code/108
+# environment
+SNAP_CONTEXT = _hsbZcMjtpjl_WNoSxZzhK4OaViY7YCyxvyppusaHCljq-Rsz1Tt
+# environment
+MANAGERPID = 2781
+# environment
+LC_MEASUREMENT = bn_BD
+# environment
+GIO_LAUNCHED_DESKTOP_FILE_PID = 16079
+# environment
+_ = /snap/code/108/usr/share/code/code
+# environment
+LC_PAPER = bn_BD
+# environment
+XDG_RUNTIME_DIR = /run/user/1000
+# environment
+GDK_PIXBUF_MODULE_FILE = /home/asif/snap/code/common/.cache/gdk-pixbuf-loaders.cache
+# environment
+JOURNAL_STREAM = 8:28330
+# environment
+XDG_SESSION_CLASS = user
+# environment
+VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
+# environment
+HOME = /home/asif
+# environment
+QT_IM_MODULE = ibus
+# environment
+ELECTRON_RUN_AS_NODE = 1
+# environment
+VSCODE_IPC_HOOK = /run/user/1000/vscode-265ee4ee-1.71.2-main.sock
+# environment
+SNAP_NAME = code
+# environment
+GSETTINGS_SCHEMA_DIR = /snap/code/108/usr/share/glib-2.0/schemas
+# environment
+IM_CONFIG_PHASE = 1
+# default
+.RECIPEPREFIX := 
+# automatic
+<F = $(notdir $<)
+# environment
+SNAP_VERSION = 74b1f979
+# default
+SUFFIXES := 
+# environment
+VSCODE_CLI = 1
+# environment
+ELECTRON_NO_ATTACH_CONSOLE = 1
+# environment
+SNAP_COMMON = /var/snap/code/common
+# default
+.FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell nocomment grouped-target extra-prereqs archives jobserver output-sync check-symlink load
+# environment
+SNAP_USER_DATA = /home/asif/snap/code/108
+# environment
+XDG_MENU_PREFIX = gnome-
+# environment
+GDMSESSION = ubuntu
+# environment
+LC_IDENTIFICATION = bn_BD
+# environment
+SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd/void
 # variable set hash-table stats:
-# Load=123/1024=12%, Rehash=0, Collisions=22/145=15%
+# Load=125/1024=12%, Rehash=0, Collisions=4/152=3%
 
 # Pattern-specific Variable Values
 
@@ -265,7 +271,7 @@ VSCODE_PID = 20195
 
 # Directories
 
-# . (device 2054, inode 2261032): 15 files, no impossibilities.
+# . (device 2052, inode 3015959): 15 files, no impossibilities.
 
 # 15 files, no impossibilities in 1 directories.
 
@@ -276,25 +282,9 @@ VSCODE_PID = 20195
 # Files
 
 # Not a target:
-all:
-#  Command line target.
-#  Implicit rule search has been done.
- 
-make: *** No rule to make target 'all'.  Stop.
-
-#  File does not exist.
-#  File has not been updated.
-
-# Not a target:
 Makefile:
 #  Implicit rule search has been done.
-#  File does not exist.
-#  File has been updated.
-#  Failed to be updated.
-
-# Not a target:
-makefile:
-#  Implicit rule search has been done.
+ 
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
@@ -304,6 +294,20 @@ makefile:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
 #  File has not been updated.
+
+# Not a target:
+all:
+#  Command line target.
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has not been updated.
+
+# Not a target:
+makefile:
+#  Implicit rule search has been done.
+#  File does not exist.
+#  File has been updated.
+#  Failed to be updated.
 
 # Not a target:
 GNUmakefile:
@@ -325,7 +329,7 @@ GNUmakefile:
 
 # strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=1/26=4%
-# Finished Make data base on Mon Sep 19 15:35:39 2022
+# Load=23/8192=0%, Rehash=0, Collisions=0/26=0%
+# Finished Make data base on Tue Sep 20 21:29:03 2022
 
  

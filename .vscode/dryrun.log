@@ -1,6 +1,6 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory '/home/asif_1217/Operating-System-main'
-make: Leaving directory '/home/asif_1217/Operating-System-main'
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/asif/Operating-System'
+make: Leaving directory '/home/asif/Operating-System'
  
 make: *** No targets specified and no makefile found.  Stop.
 
