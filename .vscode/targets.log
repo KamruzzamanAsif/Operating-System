@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Tue Sep 20 21:29:03 2022
+# Make data base, printed on Thu Sep 22 06:36:59 2022
 
 # Variables
 
@@ -61,7 +61,7 @@ VSCODE_CODE_CACHE_PATH = /home/asif/.config/Code/CachedData/74b1f979648cc44d385a
 # environment
 LANG = C
 # environment
-XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.XYQTS1
+XAUTHORITY = /run/user/1000/.mutter-Xwaylandauth.ISNLS1
 # default
 .LOADED := 
 # default
@@ -97,7 +97,7 @@ SNAP_REEXEC =
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 16128
+VSCODE_PID = 7275
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -105,7 +105,7 @@ XDG_SESSION_TYPE = wayland
 # environment
 BAMF_DESKTOP_FILE_HINT = /var/lib/snapd/desktop/applications/code_code.desktop
 # environment
-SESSION_MANAGER = local/asif-H81M-DS2:@/tmp/.ICE-unix/2933,unix/asif-H81M-DS2:/tmp/.ICE-unix/2933
+SESSION_MANAGER = local/asif-H81M-DS2:@/tmp/.ICE-unix/2945,unix/asif-H81M-DS2:/tmp/.ICE-unix/2945
 # automatic
 *F = $(notdir $*)
 # environment
@@ -153,7 +153,7 @@ LC_TIME = bn_BD
 # environment
 SNAP = /snap/code/108
 # environment
-INVOCATION_ID = 14941149487644a48ec2831a40414f98
+INVOCATION_ID = 0f70dda8a5a3461881ff80969b356c6e
 # environment
 SNAP_REVISION = 108
 # environment
@@ -189,7 +189,7 @@ SNAP_ARCH = amd64
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 2958
+SYSTEMD_EXEC_PID = 2968
 # environment
 DISPLAY = :0
 # environment
@@ -203,11 +203,11 @@ SNAP_DATA = /var/snap/code/108
 # environment
 SNAP_CONTEXT = _hsbZcMjtpjl_WNoSxZzhK4OaViY7YCyxvyppusaHCljq-Rsz1Tt
 # environment
-MANAGERPID = 2781
+MANAGERPID = 2790
 # environment
 LC_MEASUREMENT = bn_BD
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 16079
+GIO_LAUNCHED_DESKTOP_FILE_PID = 7228
 # environment
 _ = /snap/code/108/usr/share/code/code
 # environment
@@ -217,7 +217,7 @@ XDG_RUNTIME_DIR = /run/user/1000
 # environment
 GDK_PIXBUF_MODULE_FILE = /home/asif/snap/code/common/.cache/gdk-pixbuf-loaders.cache
 # environment
-JOURNAL_STREAM = 8:28330
+JOURNAL_STREAM = 8:28424
 # environment
 XDG_SESSION_CLASS = user
 # environment
@@ -284,7 +284,6 @@ SNAP_LIBRARY_PATH = /var/lib/snapd/lib/gl:/var/lib/snapd/lib/gl32:/var/lib/snapd
 # Not a target:
 Makefile:
 #  Implicit rule search has been done.
- 
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
@@ -303,6 +302,7 @@ all:
 #  File has not been updated.
 
 # Not a target:
+ 
 makefile:
 #  Implicit rule search has been done.
 #  File does not exist.
@@ -330,6 +330,6 @@ GNUmakefile:
 # strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
 # Load=23/8192=0%, Rehash=0, Collisions=0/26=0%
-# Finished Make data base on Tue Sep 20 21:29:03 2022
+# Finished Make data base on Thu Sep 22 06:36:59 2022
 
  

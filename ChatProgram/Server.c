@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-//#include <stdbool.h>  
 #include <string.h>
 #include <unistd.h>
 #include <sys/types.h>
@@ -22,6 +21,8 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; // thread mutex lock
 struct client_info{
     int number;
     int sockID;
+    char name[50];
+    char ip[50]; 
     struct sockaddr_in clientAddr;
     int len;
 };
@@ -91,34 +92,32 @@ void *messageHandler(void * arg){
         bzero(temp_buffer.data, sizeof(MESSAGE));
         if(deque(&queue, &temp_buffer)){
             if(temp_buffer.data[0] =='@'){
-                // name add kora baki...and nam er sathe sockId map koar baki 
-                // then intended user er kace message dewa jabe
-                char name[20];
-                int i = 0;
-                while(temp_buffer.data[i] != '/'){
-                    name[i++] = temp_buffer.data[i];
-                }
-                printf("%s is connected...\n", name);
-            }
-            else{
-                // broadcast the message to the clients 
-                char id[20], actual_message[1024];
-                int i = 0;
-                while(temp_buffer.data[i] != '/'){
-                    id[i] = temp_buffer.data[i];
+                char name[20], msg[50];
+                int i = 1;
+                while(temp_buffer.data[i] != ' '){
+                    name[i] = temp_buffer.data[i];
                     i++;
                 }
-    
-                int j = 0;
+
                 i++;
-                while(i<strlen(temp_buffer.data)){
-                    actual_message[j++] = temp_buffer.data[i++];
+                while(i < strlen(temp_buffer.data)){
+                    msg[i] = temp_buffer.data[i];
+                    i++;
                 }
 
-                for(int i = 0; i < clientCount; i++){
-                    if(Client[i].sockID != atoi(id)){
-                        if (write(Client[i].sockID, actual_message, strlen(actual_message)) < 0)
+                if(name == "all"){
+                    for(int i = 0; i < clientCount; i++){
+                        if (write(Client[i].sockID, msg, strlen(msg)) < 0)
                         perror("ERROR writing to socket");
+                    }
+                }
+                else{
+                    for(int i = 0; i <clientCount; i++){
+                        printf("%s %s", name, Client[i].name);
+                        if(name == Client[i].name){
+                            if (write(Client[i].sockID, msg, strlen(msg)) < 0)
+                            perror("ERROR writing to socket");
+                        }
                     }
                 }
             }
@@ -140,6 +139,9 @@ void * clientHandler(void * client_details){
     if (len < 0) 
         perror("ERROR reading from socket");
     temp_buffer.data[len] = '\0';
+    *clientDetail->name = *temp_buffer.data;
+
+    printf("%d %s\n", clientDetail->number, clientDetail->name);
 
 	printf("Client %s connected.\n", temp_buffer.data);
 
@@ -150,6 +152,7 @@ void * clientHandler(void * client_details){
             perror("ERROR reading from socket");
         temp_buffer.data[len] = '\0';
 
+        /*
         // add client socket id to the message
         char clientSocID[sizeof(int) * 4 + 1];
         sprintf(clientSocID, "%d", clientSocket);
@@ -158,6 +161,7 @@ void * clientHandler(void * client_details){
         strcat(temp_buffer.data, "/"); 
         strcat(temp_buffer.data, t);
         free(t);
+        */
 
         // enque the message  
         pthread_mutex_lock(&mutex);
@@ -198,6 +202,11 @@ int main(void){
     while(1){
         Client[clientCount].sockID = accept(serverSocket, (struct sockaddr*) &Client[clientCount].clientAddr, &sin_size);
 		Client[clientCount].number = clientCount;
+        struct sockaddr_in* pV4Addr = (struct sockaddr_in*)&Client[clientCount].clientAddr;
+        struct in_addr ipAddr = pV4Addr->sin_addr;
+        char ip_address[INET_ADDRSTRLEN];
+        inet_ntop( AF_INET, &ipAddr, ip_address, INET_ADDRSTRLEN );
+        strcpy(Client[clientCount].ip, ip_address);
 
 		pthread_create(&thread[clientCount], NULL, clientHandler, (void *) &Client[clientCount]);
 
