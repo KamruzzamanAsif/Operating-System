@@ -2,15 +2,21 @@
 # Makefile for src
 #
 
-BINFILES = Client Server
+BINFILES = Client Server server newServer
 
 all: $(BINFILES)
 
-client: Client.c
+Client: Client.c
 	gcc -o Client Client.c
 
-server: Server.c
+Server: Server.c
 	gcc -o Server Server.c -lpthread
+
+server: server.c
+	gcc -o server server.c -lpthread
+
+newServer: newServer.c
+	gcc -o newServer newServer.c -lpthread
 
 
 clean:

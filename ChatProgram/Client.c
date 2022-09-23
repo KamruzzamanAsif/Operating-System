@@ -32,18 +32,15 @@ void * doRecieving(void * sockID){
 		}
 
         outputBuffer[numberOfBytes] = '\0';
-        printf("Server: %s",outputBuffer);
+        printf("%s\n",outputBuffer);
 	}
 
 }
 
 int main(int argc, char *argv[]){
 
-	if (argc != 3) {
-        printf("usage: client client_name hostname\n"); exit(1);  }
-	
-	if ((server = gethostbyname(argv[2])) == NULL) {  // get the host info 
-	printf("ERROR, no such host\n");  exit(0);  }
+	if (argc != 2) {
+        printf("usage: client client_names\n"); exit(1);  }
 
 	// client socket
 	int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
