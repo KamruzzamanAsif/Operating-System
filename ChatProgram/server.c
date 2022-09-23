@@ -84,7 +84,7 @@ void queue_remove(int uid){
 }
 
 /* Send message to all clients except sender */
-void send_message(char *s, int uid){
+void send_message(char s[BUFFER_SZ], int uid){
 	pthread_mutex_lock(&clients_mutex);
 	printf("I am inside");
 	for(int i=0; i<MAX_CLIENTS; ++i){
@@ -103,7 +103,7 @@ void send_message(char *s, int uid){
 }
 
 
-void send_target_message(char *s, char *receiver_name, int uid){
+void send_target_message(char s[BUFFER_SZ], char receiver_name[BUFFER_SZ], int uid){
 	pthread_mutex_lock(&clients_mutex);
 	printf("I am inside");
 	for(int i=0; i < MAX_CLIENTS; i++){

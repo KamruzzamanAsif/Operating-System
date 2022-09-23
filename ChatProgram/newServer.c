@@ -161,7 +161,7 @@ void* startChat(void* clientAsVoid)
     return NULL;
 }
 
-void sendMessageToAll(int exceptSocketIndex, char* buffer)
+void sendMessageToAll(int exceptSocketIndex, char buffer[BUFF_MAX])
 {   
     pthread_mutex_lock(&clients_mutex);
 	int i;
@@ -175,7 +175,7 @@ void sendMessageToAll(int exceptSocketIndex, char* buffer)
     pthread_mutex_unlock(&clients_mutex);
 }
 
-void send_target_message(char* buffer, char* target, int exceptSocketIndex){
+void send_target_message(char buffer[BUFF_MAX], char target[BUFF_MAX], int exceptSocketIndex){
     pthread_mutex_lock(&clients_mutex);
     
     for(int i = 0; i < MAX_CLIENTS_COUNT; i++){

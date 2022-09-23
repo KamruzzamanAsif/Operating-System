@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Fri Sep 23 16:38:15 2022
+# Make data base, printed on Fri Sep 23 17:15:10 2022
 
 # Variables
 
@@ -97,7 +97,7 @@ SNAP_REEXEC =
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 6054
+VSCODE_PID = 15698
 # environment
 XDG_SESSION_TYPE = wayland
 # automatic
@@ -207,7 +207,7 @@ MANAGERPID = 2787
 # environment
 LC_MEASUREMENT = bn_BD
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6008
+GIO_LAUNCHED_DESKTOP_FILE_PID = 15649
 # environment
 _ = /snap/code/108/usr/share/code/code
 # environment
@@ -295,9 +295,9 @@ Makefile:
 #  File has not been updated.
 
 # Not a target:
- 
 all:
 #  Command line target.
+ 
 #  Implicit rule search has been done.
 #  File does not exist.
 #  File has not been updated.
@@ -330,6 +330,6 @@ GNUmakefile:
 # strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
 # Load=23/8192=0%, Rehash=0, Collisions=0/26=0%
-# Finished Make data base on Fri Sep 23 16:38:15 2022
+# Finished Make data base on Fri Sep 23 17:15:10 2022
 
  
