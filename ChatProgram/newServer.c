@@ -31,8 +31,8 @@ pthread_t thread[MAX_CLIENTS_COUNT];
 
 
 void* startChat(void*);
-void sendMessageToAll(int, char*);
-void send_target_message(char*, char*, int);
+void sendMessageToAll(int exceptSocketIndex, char buffer[BUFF_MAX]);
+void send_target_message(char buffer[BUFF_MAX], char target[32], int exceptSocketIndex);
 
 
 int main()
@@ -108,8 +108,6 @@ void* startChat(void* clientAsVoid)
     int index = curClient->index;
 
     read(socketFd, name, BUFF_MAX);
-    // //replace \n with \0
-    // name[strlen(name) - 1] = '\0';
     strcpy(curClient->name, name);
 
     bzero(buffer, BUFF_MAX);
@@ -134,6 +132,8 @@ void* startChat(void* clientAsVoid)
         }
 
         char toName[32], actualMsg[BUFF_MAX];
+        bzero(toName, 32);
+        bzero(actualMsg, BUFF_MAX);
         int i=1, j=0;
         while(buffer[i] != ' '){
             toName[j++] = buffer[i++];
@@ -145,15 +145,15 @@ void* startChat(void* clientAsVoid)
         }
 
 
-        bzero(actualMsg, BUFF_MAX);
-        strcat(actualMsg, name);
-        strcat(actualMsg, " - ");
-        strcat(actualMsg, buffer);
+        bzero(buffer, BUFF_MAX);
+        strcat(buffer, name);
+        strcat(buffer, " - ");
+        strcat(buffer, actualMsg);
         
         if(strcmp(toName , "all")==0)
-            sendMessageToAll(index, actualMsg);
+            sendMessageToAll(index, buffer);
         else
-            send_target_message(actualMsg, toName, index);
+            send_target_message(buffer, toName, index);
         
     }
 
@@ -175,7 +175,7 @@ void sendMessageToAll(int exceptSocketIndex, char buffer[BUFF_MAX])
     pthread_mutex_unlock(&clients_mutex);
 }
 
-void send_target_message(char buffer[BUFF_MAX], char target[BUFF_MAX], int exceptSocketIndex){
+void send_target_message(char buffer[BUFF_MAX], char target[32], int exceptSocketIndex){
     pthread_mutex_lock(&clients_mutex);
     
     for(int i = 0; i < MAX_CLIENTS_COUNT; i++){

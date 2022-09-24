@@ -16,7 +16,7 @@
 
 pthread_t thread[MAX_CLIENTS]; 
 static unsigned int cli_count = 0;
-static int uid = 10;
+static int uid = 0;
 
 /* Client structure */
 typedef struct{

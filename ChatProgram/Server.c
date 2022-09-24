@@ -139,7 +139,7 @@ void * clientHandler(void * client_details){
     if (len < 0) 
         perror("ERROR reading from socket");
     temp_buffer.data[len] = '\0';
-    *clientDetail->name = *temp_buffer.data;
+    strcpy(clientDetail->name , temp_buffer.data);
 
     printf("%d %s\n", clientDetail->number, clientDetail->name);
 
@@ -151,17 +151,6 @@ void * clientHandler(void * client_details){
         if (len < 0) 
             perror("ERROR reading from socket");
         temp_buffer.data[len] = '\0';
-
-        /*
-        // add client socket id to the message
-        char clientSocID[sizeof(int) * 4 + 1];
-        sprintf(clientSocID, "%d", clientSocket);
-        char *t = strdup(temp_buffer.data);
-        strcpy(temp_buffer.data, clientSocID);
-        strcat(temp_buffer.data, "/"); 
-        strcat(temp_buffer.data, t);
-        free(t);
-        */
 
         // enque the message  
         pthread_mutex_lock(&mutex);
