@@ -123,10 +123,10 @@ void* startChat(void* clientAsVoid)
 
         if (strncmp("exit", buffer, 4) == 0 || readCode == 0)
         {
+            write(socketFd, buffer, BUFF_MAX); // to exit client normally
             bzero(buffer, BUFF_MAX);
             strcat(buffer, name);
             strcat(buffer, " has left the chat\n");
-
             sendMessageToAll(index, buffer);
             break;
         }

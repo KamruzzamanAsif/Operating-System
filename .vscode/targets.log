@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Sep 26 09:54:56 2022
+# Make data base, printed on Mon Sep 26 10:00:42 2022
 
 # Variables
 
@@ -265,9 +265,9 @@ VSCODE_PID = 5951
 
 # Directories
 
-# . (device 2054, inode 2261032): 15 files, no impossibilities.
+# . (device 2054, inode 2261032): 16 files, no impossibilities.
 
-# 15 files, no impossibilities in 1 directories.
+# 16 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -292,14 +292,14 @@ Makefile:
 # Not a target:
 makefile:
 #  Implicit rule search has been done.
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 #  File does not exist.
 #  File has been updated.
 #  Failed to be updated.
 
 # Not a target:
- 
-make: *** No rule to make target 'all'.  Stop.
-
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -320,12 +320,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 23 / storage = 259 B / avg = 11 B
-# current buf: size = 8162 B / used = 259 B / count = 23 / avg = 11 B
+# strcache buffers: 1 (0) / strings = 24 / storage = 262 B / avg = 10 B
+# current buf: size = 8162 B / used = 262 B / count = 24 / avg = 10 B
 
-# strcache performance: lookups = 26 / hit rate = 11%
+# strcache performance: lookups = 27 / hit rate = 11%
 # hash-table stats:
-# Load=23/8192=0%, Rehash=0, Collisions=1/26=4%
-# Finished Make data base on Mon Sep 26 09:54:56 2022
+# Load=24/8192=0%, Rehash=0, Collisions=1/27=4%
+# Finished Make data base on Mon Sep 26 10:00:42 2022
 
  

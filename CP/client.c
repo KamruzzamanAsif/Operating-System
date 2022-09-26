@@ -29,6 +29,10 @@ void * doRecieving(void * sockID){
 			exit(0);  
 		}
 
+        if(strncmp(outputBuffer, "exit", 4) == 0){
+            exit(0);
+        }
+
         outputBuffer[numberOfBytes] = '\0';
         printf("%s\n",outputBuffer);
 	}
