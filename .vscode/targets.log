@@ -6,7 +6,7 @@ make all --print-data-base --no-builtin-variables --no-builtin-rules --question
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Mon Sep 26 09:35:32 2022
+# Make data base, printed on Mon Sep 26 09:54:56 2022
 
 # Variables
 
@@ -113,7 +113,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1001/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 3422
+GIO_LAUNCHED_DESKTOP_FILE_PID = 5903
 # automatic
 %F = $(notdir $%)
 # environment
@@ -255,7 +255,7 @@ LC_ADDRESS = bn_BD
 # environment
 LANG = C
 # environment
-VSCODE_PID = 3469
+VSCODE_PID = 5951
 # variable set hash-table stats:
 # Load=123/1024=12%, Rehash=0, Collisions=22/145=15%
 
@@ -279,9 +279,6 @@ VSCODE_PID = 3469
 all:
 #  Command line target.
 #  Implicit rule search has been done.
- 
-make: *** No rule to make target 'all'.  Stop.
-
 #  File does not exist.
 #  File has not been updated.
 
@@ -300,6 +297,9 @@ makefile:
 #  Failed to be updated.
 
 # Not a target:
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 .DEFAULT:
 #  Implicit rule search has not been done.
 #  Modification time never checked.
@@ -326,6 +326,6 @@ GNUmakefile:
 # strcache performance: lookups = 26 / hit rate = 11%
 # hash-table stats:
 # Load=23/8192=0%, Rehash=0, Collisions=1/26=4%
-# Finished Make data base on Mon Sep 26 09:35:32 2022
+# Finished Make data base on Mon Sep 26 09:54:56 2022
 
  
