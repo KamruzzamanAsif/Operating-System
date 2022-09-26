@@ -20,11 +20,10 @@ pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER; // thread mutex lock
 
 struct client_info{
     int number;
-    int sockID;
     char name[50];
-    char ip[50]; 
+    int sockID;
+    char ip_address[INET_ADDRSTRLEN]; // to store client ip address as string
     struct sockaddr_in clientAddr;
-    int len;
 };
 struct client_info Client[MAXCLIENT];
 
@@ -126,13 +125,11 @@ void *messageHandler(void * arg){
 }
 
 
-
-void * clientHandler(void * client_details){
+void save_client_info(struct client_info* client_details){
     struct client_info* clientDetail = (struct client_info*) client_details;
 	int number = clientDetail -> number;
 	int clientSocket = clientDetail -> sockID;
     MESSAGE temp_buffer;
-
     // get client name
     bzero(temp_buffer.data, sizeof(temp_buffer.data));
     int len = read(clientSocket, temp_buffer.data, sizeof(temp_buffer.data)-1);
@@ -144,7 +141,21 @@ void * clientHandler(void * client_details){
     printf("%d %s\n", clientDetail->number, clientDetail->name);
 
 	printf("Client %s connected.\n", temp_buffer.data);
+    
+    strcpy(clientDetail->name, temp_buffer.data); 
+}
 
+
+void * clientHandler(void * client_details){
+    struct client_info* clientDetail = (struct client_info*) client_details;
+	int number = clientDetail -> number;
+	int clientSocket = clientDetail -> sockID;
+    MESSAGE temp_buffer;
+
+    // for handeling client info
+    save_client_info(clientDetail);
+
+    // for handeling messages
     while(1){
         bzero(temp_buffer.data, sizeof(temp_buffer.data));
         int len = read(clientSocket, temp_buffer.data, sizeof(temp_buffer.data)-1);
@@ -193,9 +204,7 @@ int main(void){
 		Client[clientCount].number = clientCount;
         struct sockaddr_in* pV4Addr = (struct sockaddr_in*)&Client[clientCount].clientAddr;
         struct in_addr ipAddr = pV4Addr->sin_addr;
-        char ip_address[INET_ADDRSTRLEN];
-        inet_ntop( AF_INET, &ipAddr, ip_address, INET_ADDRSTRLEN );
-        strcpy(Client[clientCount].ip, ip_address);
+        inet_ntop( AF_INET, &ipAddr, Client[clientCount].ip_address, INET_ADDRSTRLEN);
 
 		pthread_create(&thread[clientCount], NULL, clientHandler, (void *) &Client[clientCount]);
 
