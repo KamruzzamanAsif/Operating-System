@@ -39,10 +39,23 @@ void * doRecieving(void * sockID){
 
 }
 
+int errmsg(int rval, char *msg)
+{
+    if (rval < 0)
+    {
+        perror(msg);
+        exit(1);
+    }
+    return rval;
+}
+
 int main(int argc, char *argv[]){
 
-	if (argc != 2) {
-        printf("usage: client client_names\n"); exit(1);  }
+	if (argc != 3) {
+        printf("usage: client client_name host_ip\n"); exit(1);  }
+
+	if ((server=gethostbyname(argv[2])) == NULL) {  // get the host info 
+        printf("ERROR, no such host\n");  exit(0);  }
 
 	// client socket
 	int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
@@ -52,7 +65,9 @@ int main(int argc, char *argv[]){
 
 	serverAddr.sin_family = AF_INET;
 	serverAddr.sin_port = htons(PORT); // short network byte order	
-	serverAddr.sin_addr.s_addr = htonl(INADDR_ANY);
+	
+	// convert ip address to binary
+    errmsg(inet_pton(AF_INET, argv[2], &serverAddr.sin_addr), "inet_pton error");
 
 	// connect to server
 	if(connect(clientSocket, (struct sockaddr*) &serverAddr, sizeof(serverAddr)) < 0){
