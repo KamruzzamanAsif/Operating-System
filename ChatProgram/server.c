@@ -9,7 +9,7 @@
 #include <pthread.h>
 #include <sys/types.h>
 #include <signal.h>
-
+/// comment
 #define MAX_CLIENTS 100
 #define BUFFER_SZ 2048
 #define PORT 5050 
@@ -192,6 +192,7 @@ void *handle_client(void *arg){
 
 	return NULL;
 }
+
 
 int main(void){
 	
